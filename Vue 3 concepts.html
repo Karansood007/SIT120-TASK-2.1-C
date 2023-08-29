@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 3 Concepts</title>
+</head>
+<body>
+  <div id="app">
+    <!-- Conditional Rendering -->
+    <h2>Conditional Rendering</h2>
+    <div>
+      <p v-if="showText">This is shown using v-if</p>
+      <p v-else>This is shown using v-else</p>
+    </div>
+
+    <div>
+      <p v-show="showWithShow">This is shown using v-show</p>
+    </div>
+
+    <ul>
+      <li v-for="(item, index) in items" :key="index">{{ item }}</li>
+    </ul>
+
+    <ul>
+      <li v-for="(item, index) in itemsWithCondition" :key="index">{{ item }}</li>
+    </ul>
+
+    <!-- Form Input Handling -->
+    <h2>Form Input Handling</h2>
+    <input v-model="inputText" placeholder="Type something">
+    <p>You typed: {{ inputText }}</p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3.2.31/dist/vue.global.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          showText: true,
+          showWithShow: true,
+          items: ['Item 1', 'Item 2', 'Item 3'],
+          inputText: '',
+        };
+      },
+      computed: {
+        itemsWithCondition() {
+          return this.items.filter(item => item.includes('2'));
+        },
+      },
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
